@@ -1,0 +1,16 @@
+[
+    {
+        "card": "1",
+        "board": "default",
+        "status": "todo",
+        "summary": "Test Card",
+        "description": "This is a test card! It is pretty meaningless, but it does some stuff and things. It also makes a good demo of the functionality of this API"
+    },
+    {
+        "card": "2",
+        "board": "default",
+        "status": "todo",
+        "summary": "Test Card 2222!",
+        "description": "Something else!"
+    }
+]
