@@ -28,7 +28,6 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-console.log("The database uri is: " + config.database.uri);
 MongoClient.connect(config.database.uri, {promiseLibrary: Promise})
   .catch(err => console.error(err.stack))
   .then(db => {
