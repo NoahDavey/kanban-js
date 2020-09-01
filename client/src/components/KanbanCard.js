@@ -29,11 +29,7 @@ class KanbanCard extends Component {
     componentDidMount() {
         fetch(`http://localhost:9000/cards/${this.state.cardID}`)
         .then(res => res.json())
-        .then((data) => {
-            console.log(data);
-            this.setState({card: data})
-            console.log(this.state);
-        })
+        .then((data) => this.setState({card: data}))
         .catch(err => err);
     }
 
