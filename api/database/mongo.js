@@ -1,8 +1,4 @@
 
-const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://swyftxUser:BlueSheep1@mycluster.zpf10.mongodb.net/MyCluster?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
 //Function used to create a collection in mongodb instance
 async function createCollection(dbName, collectionName){
   try{

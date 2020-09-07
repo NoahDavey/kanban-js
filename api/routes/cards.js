@@ -1,23 +1,30 @@
 var express = require('express');
 var router = express.Router();
-var testcard = require("../database/testcard.json")
-const { getOne } = require("../database/mongo.js");
 var config = require('../database/config').default;
 
-/* GET cards listing. */
-router.get('/', function(req, res, next) {
-  // res.send({"simple":"example"});   
-  res.send(testcard);   
+/* GET all cards listing. */
+//TODO: Find based on logged in user
+router.get('/', async function(req, res, next) {
+  try {
+    const connection = req.app.locals.db;
+    const cards = await connection.db(config.database.db_name).collection(config.database.card_collection).find({}).toArray(function(err, result) {
+      if(err) throw err;
+      res.send(result);
+    });
+  } catch (err) {
+    next(err);
+  }  
 });
 
-/* GET card with specified card number */ 
+/* GET card with specified card number */
+//TODO: Find based on logged in user 
 router.get('/:cardID', async function(req, res, next) {
   try{
     const connection = req.app.locals.db;
     const card = await connection.db(config.database.db_name).collection(config.database.card_collection).findOne({ cardID: Number(req.params.cardID) });
     
     if(card) {
-      res.send(card)
+      res.send(card);
     } else {
       res.sendStatus(404);
     }
@@ -28,13 +35,23 @@ router.get('/:cardID', async function(req, res, next) {
 })
 
 /* POST card */
-// router.post('/', (req, res) => {
-//   const connection = req.app.locals.db;
-  
-//   connection.db(config.database.db_name).collection(config.database.card_collection).insertOne(object, (err, res) => {
-//     if(err) throw err;
-//     console.log("A document was inserted!");
-//   });
-// })
+//TODO: Get working with user input
+var testObj = {
+  "cardID": 6,
+  "summary": "Do something else",
+  "description": "Do stuff! And things that make things happen...",
+  "created": "2020-08-28T14:10:00.000Z",
+  "updated": "2020-08-28T14:10:00.000Z",
+  "status": "done",
+  "comments": "Im a comment!"
+}
+
+router.post('/', (req, res) => {
+  const connection = req.app.locals.db;
+  connection.db(config.database.db_name).collection(config.database.card_collection).insertOne(testObj, (err, result) => {
+    if(err) throw err;
+    res.send("Successfully inserted document:\n" + JSON.stringify(testObj));
+  });
+})
 
 module.exports = router;
