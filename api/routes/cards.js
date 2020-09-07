@@ -15,26 +15,26 @@ router.get('/:cardID', async function(req, res, next) {
   try{
     const connection = req.app.locals.db;
     const card = await connection.db(config.database.db_name).collection(config.database.card_collection).findOne({ cardID: Number(req.params.cardID) });
-
+    
     if(card) {
       res.send(card)
     } else {
       res.sendStatus(404);
     }
-
+    
   } catch (err) {
     next(err);
   }
 })
 
 /* POST card */
-router.post('/', (req, res) => {
-  const connection = req.app.locals.db;
+// router.post('/', (req, res) => {
+//   const connection = req.app.locals.db;
   
-  connection.db(config.database.db_name).collection(config.database.card_collection).insertOne(object, (err, res) => {
-    if(err) throw err;
-    console.log("A document was inserted!");
-  });
-})
+//   connection.db(config.database.db_name).collection(config.database.card_collection).insertOne(object, (err, res) => {
+//     if(err) throw err;
+//     console.log("A document was inserted!");
+//   });
+// })
 
 module.exports = router;

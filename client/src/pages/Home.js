@@ -2,9 +2,7 @@
 import React, { Component } from 'react';
 import { Container } from "react-bootstrap";
 
-
 //Internal Imports
-import KanbanCard from "../components/KanbanCard";
 import KanbanBoard from "../components/KanbanBoard";
 
 
