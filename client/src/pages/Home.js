@@ -19,9 +19,9 @@ class Home extends Component {
     render() {
         return(
         <div>
-            <Container>
+
                 <KanbanBoard/>
-            </Container>
+
         </div>
         )
     }

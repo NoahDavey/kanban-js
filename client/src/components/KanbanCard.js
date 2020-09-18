@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card'
-import Avatar from '../assets/avatar.png'
 
 class KanbanCard extends Component {
     constructor(props) {

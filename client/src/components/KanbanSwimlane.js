@@ -1,8 +1,12 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
+import { ButtonStyles } from "../styles.js";
+import useWindowDimensions from '../util/useWindowDimensions';
 
 function KanbanSwimlane (props) {
 
+    const {height, width} = useWindowDimensions();
+    
     const drop = e => {
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
@@ -24,10 +28,13 @@ function KanbanSwimlane (props) {
                 className={props.className}
                 onDrop={drop}
                 onDragOver={dragOver}
-                style={{"background-color":"blue"}}
+                style={{"background-color":"blue", "height":height-150}}
             >
                     { props.children }
             </div>
+            <ButtonStyles>
+                <Button className="button">+ New Task</Button>
+            </ButtonStyles>
         </Col>
     )
 
